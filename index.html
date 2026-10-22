@@ -1,31 +1,59 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="ru">
 <head>
-    <title>Space X</title>
-    <meta charset="UTF-8" />
-
-    <script src="src/index.js" type="module"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#081324">
+    <title>SpaceX Stats — космические запуски на карте</title>
     <link href="styles/app.css" rel="stylesheet">
+    <script src="src/index.js" type="module"></script>
 </head>
-
 <body>
-<header>
-    <h1> SpaceX Stats</h1>
-</header>
+    <header class="header">
+        <div class="brand">
+            <span class="brand-icon" aria-hidden="true">✦</span>
+            <div>
+                <span class="eyebrow">VISUAL LAUNCH EXPLORER</span>
+                <h1>SpaceX <span>Stats</span></h1>
+            </div>
+        </div>
+        <div class="header-tools">
+            <span id="sourceBadge" class="source-badge">Launch Library 2 · v2.3.0</span>
+            <button id="reloadButton" type="button" class="secondary-button">Обновить</button>
+        </div>
+    </header>
     <main class="main">
         <aside class="aside">
-        <h3>Launches</h3>
-        <div id="listContainer">
-
-        </div>
+            <div class="aside-heading">
+                <span class="eyebrow">МИССИИ SPACEX</span>
+                <h2>Запуски <span id="launchCount" class="counter">—</span></h2>
+                <p class="muted">Наведи курсор или нажми на запуск — площадка подсветится на карте.</p>
+                <label for="searchInput" class="search-label">Поиск по названию</label>
+                <input id="searchInput" class="search" type="search" placeholder="Например, Starlink" autocomplete="off">
+            </div>
+            <div id="listContainer" class="list-container" aria-live="polite">
+                <p class="loading">Загружаем запуски SpaceX…</p>
+            </div>
         </aside>
-        <content class="content">
-            <div id="map"> </div>
-        </content>
+        <section class="content" aria-label="Карта стартовых площадок">
+            <div class="map-topline">
+                <div>
+                    <span class="eyebrow">ГЕОГРАФИЯ СТАРТОВ</span>
+                    <h2>Стартовые площадки <span id="padCount" class="counter">—</span></h2>
+                </div>
+                <div class="legend"><span class="legend-dot"></span>Площадка <span class="legend-dot legend-dot-active"></span>Выбрана</div>
+            </div>
+            <div id="map" class="map" aria-label="Карта мира с отмеченными площадками SpaceX"></div>
+            <div id="padDetails" class="pad-details" aria-live="polite">
+                <div class="details-icon" aria-hidden="true">◎</div>
+                <div><strong>Выберите запуск</strong><p>Название стартовой площадки появится здесь.</p></div>
+            </div>
+            <div id="status" class="status" role="status">Загрузка данных…</div>
+        </section>
     </main>
-
-<footer>
-
-</footer>
+    <footer class="footer">
+        <span>Учебная работа · D3.js + GeoJSON + Launch Library 2</span>
+        <a href="https://ll.thespacedevs.com/docs" target="_blank" rel="noopener noreferrer">Документация API ↗</a>
+    </footer>
 </body>
 </html>
